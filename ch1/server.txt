@@ -1,0 +1,44 @@
+
+### curl 테스트 
+## 클라이언트 호출
+$ curl --http1.0 <http://localhost:18888/greeting>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    31  100    31    0     0   1409      0 --:--:-- --:--:-- --:--:--  1476<html><body>Hello</bod></html>
+
+
+## 서버측 응답
+2020/10/20 14:20:10 Start http listening :18888
+GET /greeting HTTP/1.0
+Host: localhost:18888
+Connection: close
+Accept: */*
+User-Agent: curl/7.70.0
+
+
+HTTP/0.9
+1. 브라우저가 문서를 요청하면, 서버는 데이터를 반환한다.
+
+
+### curl -v 커맨드 테스트 
+$ curl -v --http1.0 http://localhost:18888/greeting
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying ::1:18888...
+* Connected to localhost (::1) port 18888 (#0)
+> GET /greeting HTTP/1.0
+> Host: localhost:18888
+> User-Agent: curl/7.70.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+* HTTP 1.0, assume close after body
+< HTTP/1.0 200 OK    
+< Date: Tue, 20 Oct 2020 05:28:24 GMT
+< Content-Length: 31
+< Content-Type: text/html; charset=utf-8
+<
+{ [31 bytes data]
+100    31  100    31    0     0   2066      0 --:--:-- --:--:-- --:--:--  2214<html><body>Hello</bod></html>
+
+=> 클라이언트 요청과 서버 응답 보기 
