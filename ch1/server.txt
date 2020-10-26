@@ -1,7 +1,7 @@
 
 ### curl 테스트 
 ## 클라이언트 호출
-$ curl --http1.0 <http://localhost:18888/greeting>
+$ curl --http1.0 http://localhost:18888/greeting
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100    31  100    31    0     0   1409      0 --:--:-- --:--:-- --:--:--  1476<html><body>Hello</bod></html>
@@ -25,6 +25,7 @@ $ curl -v --http1.0 http://localhost:18888/greeting
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying ::1:18888...
+
 * Connected to localhost (::1) port 18888 (#0)
 > GET /greeting HTTP/1.0
 > Host: localhost:18888
@@ -42,3 +43,16 @@ $ curl -v --http1.0 http://localhost:18888/greeting
 100    31  100    31    0     0   2066      0 --:--:-- --:--:-- --:--:--  2214<html><body>Hello</bod></html>
 
 => 클라이언트 요청과 서버 응답 보기 
+
+
+### 헤더 테스트
+
+$ curl --http1.0 -H "X-Test: Hello" http://localhost:18888
+
+GET / HTTP/1.0 
+Host: localhost:18888
+Connection: close    
+Accept: */*
+User-Agent: curl/7.70.0
+X-Test: Hello
+
